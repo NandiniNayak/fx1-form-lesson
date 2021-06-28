@@ -1,0 +1,40 @@
+<%# create a form with all the listing fields using form_with helper %>
+<h1> Create a new Listing </h1>
+
+<%= form_with model: @listing do |form|%>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <br>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+    <br>
+    <%= form.label :price %>
+    <%= form.number_field :price, min: 1, max: 10000 %>
+    <br>
+    <%= form.label :deposit %>
+    <%= form.number_field :deposit, min: 1 %>
+    <br>
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+    <br>
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+    <br>
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth %>
+    <br>
+    <%= form.label :diet %>
+    <%= form.text_field :diet %>
+    <br>
+    <%= form.label :breed_id %>
+    <%= form.select(:breed_id, @breeds.map{|b| [b.name, b.id]}) %>
+    <br>
+    <% for option in  @sexes %>
+        <div>
+            <%= form.radio_button :sex, option %>
+            <%= form.label option.to_sym, option%>
+        </div>
+    <% end %>
+    <%= form.submit %>
+
+<% end %>
